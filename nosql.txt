@@ -1,0 +1,62 @@
+(TERMINAL)
+mongod
+mongod --dbpath=C:\data\db
+
+(NEW TERMINAL)
+mongo
+
+show dbs
+
+use dorms
+
+db.createCollection("Dorm")
+
+show collections
+
+db.Dorm.insertMany([
+	{	
+		dorm_id: "dorm_1",
+		dorm_name: "Eldia Residences",
+		dorm_price: 3000,
+		dorm_location: "Espana, Manila",
+		dorm_university: "University of Santo Tomas",
+		dorm_sharing: "4 persons",
+		dorm_type: "Apartment"
+	},
+	{	
+		dorm_id: "dorm_2",
+		dorm_name: "Aqua Residences",
+		dorm_price: 10000,
+		dorm_location: "Katipunan, Quezon City",
+		dorm_university: "Ateneo de Manila University",
+		dorm_sharing: "3 persons",
+		dorm_type: "Condominium"
+	}
+]);
+
+db.Dorm.find()
+
+show dbs
+
+db.createCollection("Owner")
+
+show collections
+
+db.Owner.insertOne({
+	owner_id: "owner_1", 
+	owner_name: "Rencez Nierva", 
+	owner_email: "renceznierva@gmail.com", 
+	owner_phone: "09271829372", 
+	owner_facebook: "facebook.com/rencez",
+	dorms: ["dorm_1", "dorm_2"]
+});
+
+db.Owner.find()
+
+db.Dorm.updateOne({dorm_id: "dorm_2"}, {$set: {dorm_name: "Asul Residences"}})
+
+db.Dorm.find()
+
+db.Dorm.drop()
+
+show collections
